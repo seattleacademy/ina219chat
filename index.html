@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>ina219</title>
+    <style>
+    body {
+        font: 13px Helvetica, Arial;
+    }
+    </style>
+</head>
+
+<body>
+    Voltage: <span id="voltage"></span>
+    Current: <span id="current"></span>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+    $(function() {
+        var socket = io();
+        socket.on('volts', function(msg) {
+            console.log(msg)
+            $('#voltage').text(msg);
+        });
+        socket.on('current', function(msg) {
+            $('#current').text(msg);
+        });
+    });
+    </script>
+</body>
+
+</html>
